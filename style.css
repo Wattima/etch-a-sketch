@@ -31,6 +31,8 @@
   .title {
     display: flex;
     justify-content: center;
+    font-style: italic;
+    font-family: "Playfair Display","Bookman",serif;
   }
   .buttons {
     margin-top: 10px;
