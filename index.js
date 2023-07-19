@@ -1,25 +1,27 @@
-const container = document.getElementsByClassName("container")[0];
-const grid = document.createElement("div");
-grid.setAttribute("id", "grid");
-// grid.textContent = "Should be grid";
-let cells = 16;
+function populateBoard(size) {
+  let board = document.querySelector('.board');
+  let squares = board.querySelectorAll('div');
+  squares.forEach(div => div.remove());
+  board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
+  let amount = size * size;
+  for(let i = 0; i < amount; i++) {
+    let square = document.createElement('div');
+    square.addEventListener('mouseover', () => {
+      square.style.backgroundColor = 'black';})
+    square.style.backgroundColor = 'blue';
+    board.insertAdjacentElement("beforeend", square);
+  }
+}
 
+populateBoard(16);
 
-grid.style.display = 'grid';
-grid.style.gridTemplateColumns = `repeat(${cells}, 1fr)`;
-grid.style.gridTemplateRows = `repeat(${cells}, 1fr)`;
-
-
-
-for (let i = 0; i < cells; i++) {
-    for (let j = 0; j < cells; j++) {
-      const gridCell = document.createElement("div");
-      gridCell.classList.add("grid-cell");
-      grid.appendChild(gridCell);
-    }
+function changeSize(input) {
+  if(input >= 2 && input <= 100 ) {
+    populateBoard(input);
+  } else {
+    console.log("invalid number of squares")
   }
 
-cells = prompt("Enter number of cells");
-
-container.appendChild(grid);
+}
